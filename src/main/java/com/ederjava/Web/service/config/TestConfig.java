@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.ederjava.Web.service.entities.Category;
 import com.ederjava.Web.service.entities.Order;
+import com.ederjava.Web.service.entities.Product;
 import com.ederjava.Web.service.entities.User;
 import com.ederjava.Web.service.entities.enums.OrderStatus;
 import com.ederjava.Web.service.repositories.CategoryRepository;
 import com.ederjava.Web.service.repositories.OrderRepository;
+import com.ederjava.Web.service.repositories.ProductRepository;
 import com.ederjava.Web.service.repositories.UserRepository;
 
 @Configuration
@@ -28,16 +30,27 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private CategoryRepository categoryRepository;
+	
+	@Autowired
+	private  ProductRepository  productRepository; 
 
 	@Override
 	public void run(String... args) throws Exception {
 		
 		Category cat1 = new Category(null, "Eletronics");
 		Category cat2 = new Category(null, "Computers");
-		Category cat3 = new Category(null, "Eletrodomestic");
+		Category cat3 = new Category(null, "Appliance");
 		Category cat4 = new Category(null, "Books");
 		
+	    Product p1 = new Product(null,"Casa Blanca","Fulano de Tal", 85.3, "");
+	    Product p2 = new Product(null,"Acer","Future", 1800.0, "");
+	    Product p3 = new Product(null,"Refrigerator","Design modern", 3400.0, "");
+	    Product p4 = new Product(null,"Stove","Lighter fiver", 2500.0, "");
+	    Product p5 = new Product(null,"Tv","high definition image", 4500.0, "");
+	    Product p6 = new Product(null,"microwave","Greater power", 500.0, "");
+		
 		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4));
+		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6));
 		
 		User u1 = new User(null, "Ze das Quantas", "Ze@gmail.com","998888888", "123456");
 		User u2 = new User(null, "Fulano de Tal", "Fulano@gmail.com","998888880", "123457");
