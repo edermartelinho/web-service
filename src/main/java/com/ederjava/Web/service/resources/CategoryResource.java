@@ -13,7 +13,7 @@ import com.ederjava.Web.service.entities.Category;
 import com.ederjava.Web.service.services.CategoryService;
 
 @RestController
-@RequestMapping(value = "/Categories")
+@RequestMapping(value = "/categories")
 public class CategoryResource {
 
 	@Autowired
@@ -21,7 +21,7 @@ public class CategoryResource {
 
 	@GetMapping
 	public ResponseEntity<List<Category>> findAll() {
-		List<Category> list = service.findAii();
+		List<Category> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 
