@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import com.ederjava.Web.service.entities.Category;
 import com.ederjava.Web.service.entities.Order;
 import com.ederjava.Web.service.entities.OrderItem;
+import com.ederjava.Web.service.entities.Payment;
 import com.ederjava.Web.service.entities.Product;
 import com.ederjava.Web.service.entities.User;
 import com.ederjava.Web.service.entities.enums.OrderStatus;
@@ -77,7 +78,7 @@ public class TestConfig implements CommandLineRunner {
 		Order o1 = new Order(null, Instant.parse("2023-01-19T14:34:08Z"),OrderStatus.PAID, u1);
 		Order o2 = new Order(null, Instant.parse("2023-03-19T19:15:23Z"),OrderStatus.SHIPED, u2);
 		Order o3 = new Order(null, Instant.parse("2023-04-19T11:28:48Z"),OrderStatus.WAITING_PAYMENT, u3);
-		Order o4 = new Order(null, Instant.parse("2023-02-19T18:41:12Z"),OrderStatus.DELIVERED, u2);
+		Order o4 = new Order(null, Instant.parse("2023-02-19T18:41:12Z"),OrderStatus.PAID, u2);
 		
 		userRepository.saveAll(Arrays.asList(u1, u2, u3));
 		orderRepository.saveAll(Arrays.asList(o1,o2,o3,o4));
@@ -89,6 +90,10 @@ public class TestConfig implements CommandLineRunner {
 		
 		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
 		
+		Payment pay1 = new Payment(null,Instant.parse("2023-02-19T19:41:12Z"),o4);
+		o1.setPayment(pay1);
+		
+		orderRepository.save(o1);
 	}
 
 }
